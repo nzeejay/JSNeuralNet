@@ -11,8 +11,8 @@ let lSlider;
 
 function setup() {
 
-  nn = new neuralNetwork([{ size: 2 }, { size: 32 }, { size: 1 }]);
-
+  setupNet();
+ 
   size = 600 / 20;
 
   createCanvas(600, 600);
@@ -20,8 +20,14 @@ function setup() {
   noStroke();
 
   lSlider = createSlider(1, 5000, 1000);
+
+  let button = createButton('reload');
+  button.mousePressed(setupNet);
 }
 
+function setupNet() {
+  nn = new neuralNetwork([{ size: 2 }, { size: 16 }, { size: 1 }]);  
+}
 
 
 function draw() {
