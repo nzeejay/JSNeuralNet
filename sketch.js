@@ -4,7 +4,7 @@ const trainingSamples = [{ input: [0, 0], output: [0] },
 { input: [1, 0], output: [1] },
 { input: [0, 1], output: [1] },
 { input: [1, 1], output: [0] }, 
-{ input: [0.5, 0.5], output: [0.5]};  
+{ input: [0.5, 0.5], output: [0.5]}] ;  
 
 let size;
 
