@@ -1,0 +1,43 @@
+#networkContainer {
+
+    width: 650px;
+    height: calc(100% - 56px);
+    
+    margin: auto;
+    padding: 25px;
+
+    justify-content: center;
+    align-items: center;
+    
+    background: rgb(201, 201, 201);
+}
+
+#canvasDiv {
+    width: 604px;
+    margin-left: -2px;
+
+    border: solid black 2px;
+}
+
+.controlBox {
+    padding: 5px 5px;
+    margin-top: 25px;
+
+    border: solid grey 2px;
+    border-radius: 12px;
+
+    background: white;
+}
+
+.valueSlider {
+    padding-top: 2px;
+
+    float: right;
+    width: 400px;
+}
+
+.btn {
+    height: 28px; 
+    padding: 0px 4px;
+    margin-top: 12px;
+}
