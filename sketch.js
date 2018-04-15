@@ -3,7 +3,8 @@ let nn;
 const trainingSamples = [{ input: [0, 0], output: [0] },
 { input: [1, 0], output: [1] },
 { input: [0, 1], output: [1] },
-{ input: [1, 1], output: [0] }];  
+{ input: [1, 1], output: [0] },
+{ input: [0.5, 0.5], output: [0.5] }];  
 
 let size;
 
@@ -17,7 +18,7 @@ function setup() {
 
   setupNet();
  
-  size = 600 / 20;
+  size = 600 / 50;
 
   createCanvas(600, 600);
 
