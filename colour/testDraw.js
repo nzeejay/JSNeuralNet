@@ -5,6 +5,8 @@ function testDraw() {
     fill(testColourVal);
     ellipse(300, 300, 400);
     let result = nn.query([testColourVal.levels[0]/255, testColourVal.levels[1]/255, testColourVal.levels[2]/255]);
+    document.getElementById("BlackLikelyTag").innerHTML = "Black: " + result[0];
+    document.getElementById("WhiteLikelyTag").innerHTML = "White: " + result[1];
     console.log(result);
     if(result[0] < result[1]) {
         fill(255);
