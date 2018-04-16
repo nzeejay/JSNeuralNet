@@ -2,31 +2,64 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./main.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <html>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar fixed-top navbar-dark bg-dark">
     <a class="navbar-brand" href="#">JSNeuralNet Examples</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navLink" href="./xor/index.html">Xor Problem</a>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="./xor/index.html">Xor Problem</a>
+    <a class="navLink" href="./colour/index.html">Colour Solver</a>
+  </nav>
+
+  <div class="fixed-top networkBackground">
+
+  </div>
+
+  <div id="networkContainer">
+    <div class="controlBox">
+      <div class="exampleContent">
+        XOR Problem
+        <div style="background-image: url(./img/xorExample.png)" class="exampleDiv" onclick="location.href='./xor/index.html'">
+
+        </div>
+        <span class="exampleDesc">Solve the XOR Problem with a configurable neural network!</span>
+      </div>
+
+      <div class="exampleContent">
+        Colour Solver
+        <div style="background-image: url(./img/colourExample.png)" class="exampleDiv" onclick="location.href='./colour/index.html'">
+
+        </div>
+        <span class="exampleDesc">Create the dataset and train an automated text colour solver!</span>
+      </div>
+    </div>
+
+    <div class="controlBox">
+      These examples use a neural network framework I put together in a few hours, future plans for this framework include:
+      <ul>
+        <li>
+          Save and load
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./colour/index.html">Colour Solver</a>
+        <li>
+          WebGL
+        </li>
+        <li>
+          Convolutional layers
+        </li>
+        <li>
+          Recurrent layers
         </li>
       </ul>
+      You can find the source code for the framework and examples <a href="http://github.com/nzeejay/JSNeuralNet/">here</a>
     </div>
-  </nav>
+  </div>
 </body>
 
 </html>

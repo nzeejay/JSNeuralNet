@@ -18,7 +18,10 @@ class neuralNetwork {
       this.layers[i].calc(this.layers[i - 1]);
   }
 
-  backprop(step) {
+  backprop(step, expected) {
+    if(expected)
+      setError(expected);
+
     let lastLayer = this.layers.length - 1;
 
     for (let i = lastLayer; i > 0; i--)

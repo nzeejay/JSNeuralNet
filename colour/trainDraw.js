@@ -96,7 +96,7 @@ function addSample(outp) {
     if(outp[1] == 1)
         domClr = "white";
 
-    let circClr = "rgb( " + parseInt(currentColour.r) + ", " +
+    let circClr = "rgb(" + parseInt(currentColour.r) + ", " +
     parseInt(currentColour.g) + ", " +
     parseInt(currentColour.b) + ")";
 
