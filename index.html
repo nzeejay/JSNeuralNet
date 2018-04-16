@@ -1,51 +1,32 @@
 <head>
-  <script src="../NeuralNetwork.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.js"></script>
-
-  <script src="xor.js"></script>
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
 
-  <link rel="stylesheet" href="../main.css">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <html>
 
 <body>
-    <nav class="navbar fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">XOR Problem</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">JSNeuralNet Examples</a>
 
-        <a class="navLink" href="../colour/index.html">Colour Solver</a>
-    </nav>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div id="networkContainer">
-    <div id="canvasDiv"></div>
-
-    <div class="controlBox" id="trainControl">
-      <b>Network Controls:</b>
-      <br>
-      <br>
-      <a id="learnRateTag">Learn rate: 0.1000</a>
-      <input class="valueSlider" type="range" min="1" max="5000" value="1000" id="learnRate" oninput="setLearn = parseFloat(value/10000)">
-      <br>
-      <br>
-
-      <a id="hiddenNodesTag">Hidden nodes: 32</a>
-      <input class="valueSlider" type="range" min="3" max="64" value="32" id="hiddenNodes" oninput="currentHidden = parseFloat(value)">
-      <br>
-      <br>
-
-      <a id="resTag">Resolution: 30</a>
-      <input class="valueSlider" type="range" min="4" max="300" value="30" id="resolution" oninput="changeRes(value)">
-      <br>
-
-      <button type="button" class="btn btn-warning" id="resetButton" onclick="setupNet()">Reset</button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="./xor/index.html">Xor Problem</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./colour/index.html">Colour Solver</a>
+        </li>
+      </ul>
     </div>
-  </div>
+  </nav>
 </body>
 
 </html>
