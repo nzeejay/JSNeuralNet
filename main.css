@@ -69,3 +69,22 @@
     padding: 0px 4px;
     margin-top: 12px;
 }
+
+.dot {
+    height: 75px;
+    width: 75px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 4% 3%;
+
+    margin: 5px;
+}
+
+.black {
+    color: black;
+}
+
+.white {
+    color: white;
+}
