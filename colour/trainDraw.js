@@ -68,6 +68,8 @@ function selectorHandeler() {
                 output: outp
             });
 
+            addSample(outp);
+
             currentColour = getRandomColour();
         }
     }
@@ -86,4 +88,17 @@ function getRandomColour() {
 function specifyColour(value) {
     let c = color("#" + value);
     currentColour = { r: c.levels[0], g: c.levels[1], b: c.levels[2] };
+}
+
+function addSample(outp) {
+    let domClr = "black";
+
+    if(outp[1] == 1)
+        domClr = "white";
+
+    let circClr = "rgb( " + parseInt(currentColour.r) + ", " +
+    parseInt(currentColour.g) + ", " +
+    parseInt(currentColour.b) + ")";
+
+    document.getElementById("trainingSamples").innerHTML += "<span style='background:" + circClr + "' class='dot " + domClr + "'>" + domClr + "</span>";
 }

@@ -7,7 +7,6 @@ function testDraw() {
     let result = nn.query([testColourVal.levels[0]/255, testColourVal.levels[1]/255, testColourVal.levels[2]/255]);
     document.getElementById("blackLikelyTag").innerHTML = "Black: " + result[0];
     document.getElementById("whiteLikelyTag").innerHTML = "White: " + result[1];
-    console.log(result);
     if(result[0] < result[1]) {
         fill(255);
         text(testColourVal, 300, 300);
