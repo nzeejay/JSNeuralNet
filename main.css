@@ -1,15 +1,43 @@
-#networkContainer {
+.navbar {
+    height: 56px;
+    justify-content: baseline;
+}
 
+.navLink {
+    display: inline-block;
+    color: rgb(201, 201, 201);
+    transition: color 0.2s;
+}
+
+.navLink:hover {
+    color: rgb(175, 175, 175);
+    text-decoration: none;
+}
+
+.networkBackground {
+    width: 650px;
+    height: calc(100% - 56px);
+
+    margin: auto;
+    margin-top: 56px;
+
+    background: rgb(201, 201, 201);
+
+    z-index: -1;
+}
+
+#networkContainer {
     width: 650px;
     height: calc(100% - 56px);
     
     margin: auto;
+    margin-top: 56px;
     padding: 25px;
 
     justify-content: center;
     align-items: center;
-    
-    background: rgb(201, 201, 201);
+
+    z-index: 1000;
 }
 
 #canvasDiv {
