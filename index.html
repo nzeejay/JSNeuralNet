@@ -1,71 +1,51 @@
 <head>
-    <script src="../NeuralNetwork.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.js"></script>
-    <script src="jscolor.js"></script>
+  <script src="../NeuralNetwork.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.js"></script>
 
-    <script src="colour.js"></script>
-    <script src="trainDraw.js"></script>
-    <script src="training.js"></script>
-    <script src="testDraw.js"></script>
-    <script src="auxilary.js"></script>
+  <script src="xor.js"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="../main.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <html>
 
 <body>
     <nav class="navbar fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Colour Solver</a>
+        <a class="navbar-brand" href="#">XOR Problem</a>
 
-        <a class="navLink" href="../xor/index.html">XOR Problem</a>
+        <a class="navLink" href="../colour/index.html">Colour Solver</a>
     </nav>
 
-    <div class="fixed-top networkBackground">
+  <div id="networkContainer">
+    <div id="canvasDiv"></div>
 
+    <div class="controlBox" id="trainControl">
+      <b>Network Controls:</b>
+      <br>
+      <br>
+      <a id="learnRateTag">Learn rate: 0.1000</a>
+      <input class="valueSlider" type="range" min="1" max="5000" value="1000" id="learnRate" oninput="setLearn = parseFloat(value/10000)">
+      <br>
+      <br>
+
+      <a id="hiddenNodesTag">Hidden nodes: 32</a>
+      <input class="valueSlider" type="range" min="3" max="64" value="32" id="hiddenNodes" oninput="currentHidden = parseFloat(value)">
+      <br>
+      <br>
+
+      <a id="resTag">Resolution: 30</a>
+      <input class="valueSlider" type="range" min="4" max="300" value="30" id="resolution" oninput="changeRes(value)">
+      <br>
+
+      <button type="button" class="btn btn-warning" id="resetButton" onclick="setupNet()">Reset</button>
     </div>
-
-    <div id="networkContainer">
-        <div id="canvasDiv"></div>
-
-        <div class="controlBox" id="trainControl">
-            <b>Training Controls:</b>
-            <br>
-            <br>
-            <a id="learnRateTag">Learn rate: 0.1000</a>
-            <input class="valueSlider" type="range" min="1" max="5000" value="1000" id="learnRate" oninput="setLearn(parseFloat(value/10000))">
-            <br>
-            <br> Specify colour:
-            <button class="jscolor {valueElement:null,value:'66ccff', onFineChange:'specifyColour(this)'}" style="width:50px; height:20px;"></button>
-            <br>
-            <br>
-
-            <b id="errorTag">Error: </b>
-            <br>
-
-            <button type="button" class="btn btn-success" id="startButton" onclick="startTraining()">Start</button>
-            <button type="button" class="btn btn-danger" id="stopButton" onclick="stopTraining()">Stop</button>
-            <br>
-            <button style="float: right" type="button" class="btn btn-success" id="showTestButton" onclick="showTest()">Test</button>
-            <button type="button" class="btn btn-warning" id="resetButton" onclick="setupNet()">Reset</button>
-        </div>
-
-        <div class="controlBox" style="display: none" id="testControl">
-            Set color:
-            <button class="jscolor {valueElement:null,value:'66ccff', onFineChange:'testColour(this)'}" style="width:50px; height:20px;"></button>
-            <br>
-
-            <a id="blackLikelyTag">Black: </a>
-            <br>
-            <a id="whiteLikelyTag">White: </a>
-            <br>
-            <button type="button" class="btn btn-success" id="startButton" onclick="showTrain()">Train</button>
-        </div>
-    </div>
+  </div>
 </body>
 
 </html>
