@@ -103,9 +103,6 @@ class layer {
         this.weights[weightIndex] += -step * prevLayer.nodes[j] * gradient;
 
         prevLayer.error[j] += this.weights[weightIndex] * gradient;
-
-        constrain(this.bias[i], -5, 5);
-        constrain(this.weights[weightIndex], -5, 5);
       }
     }
   }
