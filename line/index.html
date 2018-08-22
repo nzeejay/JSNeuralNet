@@ -1,0 +1,82 @@
+<head>
+    <script src="../NeuralNetwork.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.js"></script>
+
+    <script src="line.js"></script>
+    <script src="trainDraw.js"></script>
+    <script src="training.js"></script>
+    <script src="testDraw.js"></script>
+    <script src="auxilary.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../main.css">
+
+    <meta name="viewport" content="width=650">
+</head>
+
+<html>
+
+<body>
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="../index.html">Colour Solver</a>
+
+        <a class="navLink" href="../xor/index.html">XOR Problem</a>
+    </nav>
+
+    <div class="fixed-top networkBackground">
+
+    </div>
+
+    <div id="networkContainer">
+        <div id="canvasDiv"></div>
+
+        <div class="controlBox" id="trainControl">
+            <b>Training Controls:</b>
+            <br>
+            <br>
+            <a id="learnRateTag">Learn rate: 0.1000</a>
+            <input class="valueSlider" type="range" min="1" max="5000" value="1000" id="learnRate" oninput="setLearn(parseFloat(value/10000))">
+            <br>
+            <br> Specify colour:
+            <button class="jscolor {valueElement:null,value:'66ccff', onFineChange:'specifyColour(this)'}" style="width:50px; height:20px;"></button>
+            <br>
+            <br>
+
+            <b id="errorTag">Error: </b>
+            <br>
+
+            <button type="button" class="btn btn-success" id="startButton" onclick="startTraining()">Start</button>
+            <button type="button" class="btn btn-danger" id="stopButton" onclick="stopTraining()">Stop</button>
+            <br>
+            <button style="float: right" type="button" class="btn btn-success" id="showTestButton" onclick="showTest()">Test</button>
+            <button type="button" class="btn btn-warning" id="resetButton" onclick="setupNet()">Reset</button>
+        </div>
+
+        <div class="controlBox" style="display: none" id="testControl">
+            Set color:
+            <button class="jscolor {valueElement:null,value:'66ccff', onFineChange:'testColour(this)'}" style="width:50px; height:20px;"></button>
+            <br>
+
+            <a id="blackLikelyTag">Black: </a>
+            <br>
+            <a id="whiteLikelyTag">White: </a>
+            <br>
+            <button type="button" class="btn btn-success" id="startButton" onclick="showTrain()">Train</button>
+        </div>
+
+        <div class="controlBox" id="trainingSamples">
+            Training Samples: <br>
+            
+        </div>
+
+        <div class="controlBox">
+            Creating a good dataset is essential to acheieving good training results. 
+            Try specifying the colours to hone in the dataset, if the error is stuck around .5 your dataset is probably too inaccurate.
+        </div>
+    </div>
+</body>
+
+</html>
