@@ -34,7 +34,7 @@ class neuralNetwork {
     let totalErr = 0;
 
     for (let i = 0; i < expected.length; i++) {
-      let val = this.layers[lastLayer].nodes[i] - expected[i];
+      const val = this.layers[lastLayer].nodes[i] - expected[i];
       this.layers[lastLayer].error[i] = val;
       totalErr += val * val;
     }
@@ -61,14 +61,17 @@ class layer {
     this.error = new Array(layerInfo.size);
 
     for (let i = 0; i < this.bias.length; i++)
-      this.bias[i] = Math.random() * 2 - 1;
+      this.bias[i] = (Math.random() * 2 - 1) * 1.25;
 
     if (prevLayer) {
+      this.vel = new Array(layerInfo.size* prevLayer.size);
       this.weights = new Array(layerInfo.size * prevLayer.size);
 
-      for (let i = 0; i < this.weights.length; i++)
-        this.weights[i] = Math.random() * 2 - 1;
+      for (let i = 0; i < this.weights.length; i++) {
+      this.vel[i] = 0;
+        this.weights[i] = (Math.random() * 2 - 1) * 1.25;
     }
+  }
 
     this.clear();
   }
@@ -96,15 +99,44 @@ class layer {
       for (let j = 0; j < prevLayer.nodes.length; j++) {
         let weightIndex = (i * prevLayer.nodes.length) + j;
 
-        let gradient = this.sigmoidDer(prevLayer.nodes[j]) * this.error[i];
+        let gradient = this.sigmoidDer(prevLayer.nodes[j]) * 2 * this.error[i];
 
+        if(this.bias[i] > -2 && this.bias[i] < 2)
         this.bias[i] += -step * gradient;
 
-        this.weights[weightIndex] += -step * prevLayer.nodes[j] * gradient;
+        this.vel[weightIndex] = -step * prevLayer.nodes[j] * gradient;
+        if(this.weights[weightIndex] > -2 && this.weights[weightIndex] < 2)
+        this.weights[weightIndex] += this.vel[weightIndex];
 
         prevLayer.error[j] += this.weights[weightIndex] * gradient;
       }
     }
+  }
+
+  softmax() {
+    let total = 0;
+    for(let i = 0; i < this.nodes.length; i++) {
+      total += this.nodes[i];
+    }
+
+    total /= this.nodes.length;
+
+    for(let i = 0; i < this.nodes.length; i++) {
+      this.nodes[i] *= total;
+    }    
+  }
+
+  relu(f) {
+    if(f < 0)
+      return 0;
+    return f;
+  }
+
+  reluDer(f) {
+    if(f == 0)
+      return 0;
+
+    return 1;
   }
 
   sigmoid(f) {
