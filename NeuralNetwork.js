@@ -105,7 +105,6 @@ class layer {
         this.bias[i] += -step * gradient;
 
         this.vel[weightIndex] = -step * prevLayer.nodes[j] * gradient;
-        if(this.weights[weightIndex] > -2 && this.weights[weightIndex] < 2)
         this.weights[weightIndex] += this.vel[weightIndex];
 
         prevLayer.error[j] += this.weights[weightIndex] * gradient;
