@@ -16,7 +16,7 @@ function setup() {
 }
 
 function setupNet() {
-  nn = new neuralNetwork([{ size: 1 },  {size: 6 }, {size: 6 }, {size: 6}, { size: 1 }]);
+  nn = new neuralNetwork([{ size: 1 },  {size: 24 }, {size: 24 }, {size: 24 }, { size: 1 }]);
 }
 
 function draw() {

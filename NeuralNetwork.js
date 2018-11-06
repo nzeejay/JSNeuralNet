@@ -1,9 +1,11 @@
 class neuralNetwork {
-  constructor(layerInfo) {
+  constructor(layerInfo, activationTypes) {
     this.layers = new Array(layerInfo.length);
 
     for (let i = 0; i < this.layers.length; i++) {
-      this.layers[i] = new layer(layerInfo[i], (layerInfo[i - 1] ? layerInfo[i - 1] : null));
+
+
+      this.layers[i] = new layer(layerInfo[i], (layerInfo[i - 1] ? layerInfo[i - 1] : null), activationTypes[i]);
     }
   }
 
@@ -54,7 +56,9 @@ class neuralNetwork {
 }
 
 class layer {
-  constructor(layerInfo, prevLayer) {
+  constructor(layerInfo, prevLayer, act) {
+    this.activationType = act;
+
     this.nodes = new Array(layerInfo.size);
     this.bias = new Array(layerInfo.size);
 
@@ -90,7 +94,7 @@ class layer {
         this.nodes[i] += prevLayer.nodes[j] * this.weights[weightIndex];
       }
 
-      this.nodes[i] = this.sigmoid(this.nodes[i] + this.bias[i]);
+      this.nodes[i] = this.activate(this.nodes[i] + this.bias[i]);
     }
   }
 
@@ -99,7 +103,7 @@ class layer {
       for (let j = 0; j < prevLayer.nodes.length; j++) {
         let weightIndex = (i * prevLayer.nodes.length) + j;
 
-        let gradient = this.sigmoidDer(prevLayer.nodes[j]) * 2 * this.error[i];
+        let gradient = this.der(prevLayer.nodes[j]) * 2 * this.error[i];
 
         if(this.bias[i] > -2 && this.bias[i] < 2)
         this.bias[i] += -step * gradient;
@@ -109,6 +113,34 @@ class layer {
 
         prevLayer.error[j] += this.weights[weightIndex] * gradient;
       }
+    }
+  }
+
+  activate(val) {
+    switch (this.activationType) {
+      case "sigmoid":
+          return this.sigmoid(val);
+        break;
+      case "relu":
+        return this.relu(val);
+        break;
+      default:
+        return this.sigmoid(val);
+        break;
+    }
+  }
+
+  der(val) {
+    switch (this.activationType) {
+      case "sigmoid":
+          return this.sigmoidDer(val);
+        break;
+      case "relu":
+        return this.reluDer(val);
+        break;
+      default:
+        this.sigmoidDer(val);
+        break;
     }
   }
 
