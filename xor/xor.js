@@ -28,7 +28,7 @@ function setup() {
 }
 
 function setupNet() {
-  nn = new neuralNetwork([{ size: 2 }, { size: currentHidden }, { size: 1 }]);  
+  nn = new neuralNetwork([{ size: 2 }, { size: currentHidden, act: "relu" }, { size: 1, act: "relu" }]);  
 }
 
 function learnRateListener() {

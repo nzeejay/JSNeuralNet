@@ -1,11 +1,10 @@
 class neuralNetwork {
-  constructor(layerInfo, activationTypes) {
+  constructor(layerInfo) {
     this.layers = new Array(layerInfo.length);
 
     for (let i = 0; i < this.layers.length; i++) {
+        this.layers[i] = new layer(layerInfo[i], (layerInfo[i - 1] ? layerInfo[i - 1] : null));
 
-
-      this.layers[i] = new layer(layerInfo[i], (layerInfo[i - 1] ? layerInfo[i - 1] : null), activationTypes[i]);
     }
   }
 
@@ -56,8 +55,8 @@ class neuralNetwork {
 }
 
 class layer {
-  constructor(layerInfo, prevLayer, act) {
-    this.activationType = act;
+  constructor(layerInfo, prevLayer) {
+    this.activationType = layerInfo.act;
 
     this.nodes = new Array(layerInfo.size);
     this.bias = new Array(layerInfo.size);
@@ -75,6 +74,8 @@ class layer {
       this.vel[i] = 0;
         this.weights[i] = (Math.random() * 2 - 1) * 1.25;
     }
+
+    this.limit = 1;
   }
 
     this.clear();
@@ -105,11 +106,20 @@ class layer {
 
         let gradient = this.der(prevLayer.nodes[j]) * 2 * this.error[i];
 
-        if(this.bias[i] > -2 && this.bias[i] < 2)
-        this.bias[i] += -step * gradient;
+        this.vel[weightIndex] = -step * prevLayer.nodes[j] * gradient * 0.4;
 
-        this.vel[weightIndex] = -step * prevLayer.nodes[j] * gradient;
-        this.weights[weightIndex] += this.vel[weightIndex];
+        if(this.activationType == "relu") {
+          if(this.weights[weightIndex] > -this.limit && 0 > this.vel[weightIndex])
+            this.weights[weightIndex] += this.vel[weightIndex];
+          if(this.weights[weightIndex] < this.limit && 0 < this.vel[weightIndex])
+            this.weights[weightIndex] += this.vel[weightIndex];
+
+          if(this.bias[i] > -this.limit  && this.bias[i] < this.limit )
+            this.bias[i] += -step * gradient;
+        } else { 
+          this.weights[weightIndex] += this.vel[weightIndex];
+          this.bias[i] += -step * gradient;
+        }
 
         prevLayer.error[j] += this.weights[weightIndex] * gradient;
       }
@@ -139,7 +149,7 @@ class layer {
         return this.reluDer(val);
         break;
       default:
-        this.sigmoidDer(val);
+        return this.sigmoidDer(val);
         break;
     }
   }
@@ -159,13 +169,13 @@ class layer {
 
   relu(f) {
     if(f < 0)
-      return 0;
+      return 0.00001;
     return f;
   }
 
   reluDer(f) {
     if(f == 0)
-      return 0;
+      return 0.00001;
 
     return 1;
   }

@@ -1,5 +1,7 @@
 let nn;
 
+let isRelu = true;
+
 let trainingSamples = [];
 
 function setup() {
@@ -16,8 +18,12 @@ function setup() {
 }
 
 function setupNet() {
-  nn = new neuralNetwork([{ size: 1 },  {size: 24 }, {size: 24 }, {size: 24 }, { size: 1 }]);
-}
+  if(isRelu)
+    nn = new neuralNetwork([{ size: 1 },  {size: 12, act: "relu" }, {size: 12, act: "relu" }, { size: 1, act: "relu" }]);
+  else
+    nn = new neuralNetwork([{ size: 1 },  {size: 24 }, {size: 24 }, {size: 24 }, { size: 1 }]);
+
+  }
 
 function draw() {
   if(isTrainWindow) {

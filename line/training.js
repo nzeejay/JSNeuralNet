@@ -9,7 +9,6 @@ function train() {
 
         totalErr += nn.setError(trainingSamples[i].output);
         nn.backprop(trainStep);
-        nn.layers[nn.layers.length - 1].softmax();
     } 
 
     return Math.sqrt(totalErr / trainingSamples.length);
